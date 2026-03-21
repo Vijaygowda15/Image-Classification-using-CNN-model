@@ -18,7 +18,7 @@ A CNN-based image classification system
 - [Overview](#-overview)
 - [Demo](#-demo)
 - [Architecture](#-architecture)
-- [Ship Classes](#-ship-classes)
+- [Image Classes](#-image-classes)
 - [Dataset Structure](#-dataset-structure)
 - [Installation](#-installation)
 - [Usage](#-usage)
@@ -31,7 +31,7 @@ A CNN-based image classification system
 
 ## 🔭 Overview
 
-This project addresses the challenge of **automating naval vessel identification** using deep learning on imagery. Traditional ship classification relies on human interpretation of data — a slow and error-prone process. This system replaces it with a **Convolutional Neural Network (CNN)** pipeline deployed as a Flask web application.
+This project addresses the challenge of **automating naval vessel identification** using deep learning on imagery. Traditional image classification relies on human interpretation of data — a slow and error-prone process. This system replaces it with a **Convolutional Neural Network (CNN)** pipeline deployed as a Flask web application.
 
 **Key capabilities:**
 - Upload a ZIP dataset of images → auto-train a CNN model
