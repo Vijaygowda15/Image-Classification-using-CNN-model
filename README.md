@@ -8,7 +8,7 @@
 ![Flask](https://img.shields.io/badge/Flask-2.3%2B-green?style=for-the-badge&logo=flask)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-**A CNN-based ship classification system
+A CNN-based ship classification system
 
 </div>
 
@@ -50,7 +50,7 @@ This project addresses the challenge of **automating naval vessel identification
 |------|-------------|
 | `/`  | Upload a `.zip` dataset and trigger training |
 | `/train` | View training metrics, confusion matrix, classification report |
-| `/predict` | Upload a single ISAR image to classify it in real time |
+| `/predict` | Upload a single image to classify it in real time |
 
 ---
 
@@ -94,7 +94,7 @@ Input Image (200×500, Grayscale)
 ```
 
 > **Image requirements:** PNG or JPG, any resolution (will be auto-resized to 200×500).  
-> Grayscale ISAR images recommended. Colour images are auto-converted to grayscale.
+> Grayscale images recommended. Colour images are auto-converted to grayscale.
 
 ---
 
@@ -108,8 +108,8 @@ Input Image (200×500, Grayscale)
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/ship-isar-classification.git
-cd ship-isar-classification
+git clone https://github.com/<your-username>/image-classification.git
+cd image-classification
 
 # 2. Create and activate virtual environment
 python -m venv venv
@@ -171,7 +171,7 @@ The training results page shows:
 ## 📂 Project Structure
 
 ```
-ship-isar-classification/
+Image-classification/
 │
 ├── app.py                   # Main Flask application (routes, model, training)
 ├── requirements.txt         # Python dependencies
