@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRDO Ship Classification — Upload Dataset</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<nav class="nav-bar">
+  <div class="nav-brand">
+    <div class="dot"></div>
+    <span>DRDO · ISAR · Ship Classification</span>
+  </div>
+  <div class="nav-links">
+    <a href="/">Upload</a>
+    <a href="/train">Train</a>
+    <a href="/predict">Predict</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- Hero -->
+  <div class="hero animate-in">
+    <div class="hero-tag">LRDE Division · DRDO · Internship Project</div>
+    <h1>Ship‑Type Classification<br>from <span>ISAR</span> Images</h1>
+    <p>A deep learning system using Convolutional Neural Networks to classify seven types of naval vessels from Inverse Synthetic Aperture Radar imagery.</p>
+  </div>
+
+  <!-- Info cards row -->
+  <div class="stats-row animate-in" style="animation-delay:0.1s">
+    <div class="stat-box">
+      <div class="val">7</div>
+      <div class="lbl">Ship Classes</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">CNN</div>
+      <div class="lbl">Architecture</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">ISAR</div>
+      <div class="lbl">Radar Imaging</div>
+    </div>
+    <div class="stat-box">
+      <div class="val">Flask</div>
+      <div class="lbl">Web Framework</div>
+    </div>
+  </div>
+
+  <!-- Upload card -->
+  <div class="card animate-in" style="animation-delay:0.2s">
+    <div class="card-title">Step 1 — Upload Dataset</div>
+
+    <form action="/" method="post" enctype="multipart/form-data" id="uploadForm">
+      <div class="upload-zone" id="dropZone">
+        <input type="file" name="dataset" accept=".zip" required id="fileInput"
+               onchange="document.getElementById('fileLabel').textContent=this.files[0].name">
+        <div class="upload-icon">📦</div>
+        <p>Drag &amp; drop your ZIP dataset here<br>or click to browse</p>
+        <p class="filename" id="fileLabel">No file selected</p>
+      </div>
+
+      <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+        <button type="submit" class="btn btn-primary">
+          ⬆ Upload &amp; Begin Training
+        </button>
+        <a href="/predict" class="btn">
+          ⚡ Go to Predict
+        </a>
+      </div>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Dataset format info -->
+  <div class="card animate-in" style="animation-delay:0.3s">
+    <div class="card-title">Dataset Format</div>
+    <p style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-dim); line-height:2;">
+      Your ZIP file should contain class-labelled subdirectories:<br>
+      <span style="color:var(--accent)">dataset.zip/</span><br>
+      &nbsp;&nbsp;├── cargo/<br>
+      &nbsp;&nbsp;├── aircraft_carrier/<br>
+      &nbsp;&nbsp;├── passenger/<br>
+      &nbsp;&nbsp;├── oil_tanker/<br>
+      &nbsp;&nbsp;├── frigate/<br>
+      &nbsp;&nbsp;├── patrol/<br>
+      &nbsp;&nbsp;└── …other_class/
+    </p>
+  </div>
+
+  <!-- Ship types -->
+  <div class="card animate-in" style="animation-delay:0.4s">
+    <div class="card-title">Supported Ship Categories</div>
+    <div class="stats-row" style="margin-bottom:0">
+      {% for name, icon in [("Cargo", "🚢"), ("Aircraft Carrier", "✈"), ("Passenger", "🛳"), ("Oil Tanker", "⛽"), ("Frigate", "⚓"), ("Patrol", "🔭"), ("Other", "❓")] %}
+      <div class="stat-box" style="font-size:0.7rem;">
+        <div style="font-size:1.5rem; margin-bottom:0.4rem;">{{ icon }}</div>
+        <div style="font-family:var(--font-mono); color:var(--text-dim); letter-spacing:0.05em;">{{ name }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  DRDO LRDE Internship · Ship Classification from ISAR Images ·
+  <span>Vijay N</span> · 23MSRDS078 · Jain University 2025
+</footer>
+
+</body>
+</html>

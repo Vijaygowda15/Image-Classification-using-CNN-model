@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Flask
+instance/
+.webassets-cache
+
+# Uploaded data (do not commit user datasets)
+uploaded_dataset/
+static/uploads/
+
+# Trained model (large binary – use Git LFS or releases)
+trained_model.h5
+*.h5
+*.keras
+
+# Generated plots
+static/confusion_matrix.png
+static/training_curves.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb

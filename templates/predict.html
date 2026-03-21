@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predict — DRDO Ship Classification</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<nav class="nav-bar">
+  <div class="nav-brand">
+    <div class="dot"></div>
+    <span>DRDO · ISAR · Ship Classification</span>
+  </div>
+  <div class="nav-links">
+    <a href="/">Upload</a>
+    <a href="/train">Train</a>
+    <a href="/predict">Predict</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="hero animate-in" style="padding-top:2rem; padding-bottom:1.5rem;">
+    <div class="hero-tag">Real-Time Inference</div>
+    <h1>Ship <span>Identification</span></h1>
+    <p>Upload an ISAR grayscale image to classify its ship type using the trained CNN model.</p>
+  </div>
+
+  <!-- Upload form -->
+  <div class="card animate-in" style="animation-delay:0.1s">
+    <div class="card-title">Upload ISAR Image</div>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+      <div class="upload-zone">
+        <input type="file" name="imagefile" accept=".png,.jpg,.jpeg" required
+               onchange="document.getElementById('imgLabel').textContent=this.files[0].name">
+        <div class="upload-icon">🛰</div>
+        <p>Upload a grayscale ISAR image (PNG / JPG)</p>
+        <p class="filename" id="imgLabel">No file selected</p>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button type="submit" class="btn btn-primary">
+          🔍 Classify Ship
+        </button>
+      </div>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Result -->
+  {% if prediction %}
+  <div class="card animate-in" style="animation-delay:0.2s">
+    <div class="card-title">Classification Result</div>
+
+    {% if image_file %}
+    <img class="uploaded-img" 
+         src="{{ url_for('static', filename='uploads/' + image_file) }}"
+         alt="Uploaded ISAR Image">
+    {% endif %}
+
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.6rem;">
+        Predicted Ship Type
+      </p>
+      <div class="pred-badge">{{ prediction }}</div>
+      {% if confidence %}
+      <p style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent); margin-top:0.75rem;">
+        Confidence: <strong>{{ confidence }}%</strong>
+      </p>
+      {% endif %}
+    </div>
+
+    <!-- Probability bars -->
+    {% if all_probs %}
+    <div class="card-title" style="margin-top:1rem;">Class Probabilities</div>
+    {% for cls, prob in all_probs.items() | sort(attribute='1', reverse=True) %}
+    <div class="prob-bar-wrap">
+      <div class="prob-label">
+        <span>{{ cls }}</span>
+        <span>{{ "%.1f" | format(prob) }}%</span>
+      </div>
+      <div class="prob-bar-bg">
+        <div class="prob-bar-fill {% if cls == prediction %}top{% endif %}"
+             style="width:{{ prob }}%"></div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+  </div>
+  {% endif %}
+
+  <div style="text-align:center; margin: 1rem 0 3rem;">
+    <a href="/" class="btn">↩ Back to Home</a>
+    &nbsp;&nbsp;
+    <a href="/predict" class="btn btn-success">⟳ New Prediction</a>
+  </div>
+
+</div>
+
+<footer>
+  DRDO LRDE Internship · Ship Classification from ISAR Images ·
+  <span>Vijay N</span> · 23MSRDS078 · Jain University 2025
+</footer>
+
+</body>
+</html>
