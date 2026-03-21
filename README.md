@@ -7,7 +7,7 @@
 ![Flask](https://img.shields.io/badge/Flask-2.3%2B-green?style=for-the-badge&logo=flask)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-A CNN-based ship classification system
+A CNN-based image classification system
 
 </div>
 
