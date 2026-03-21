@@ -8,10 +8,7 @@
 ![Flask](https://img.shields.io/badge/Flask-2.3%2B-green?style=for-the-badge&logo=flask)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-**A CNN-based ship classification system for Inverse Synthetic Aperture Radar (ISAR) imagery,  
-developed during internship at LRDE Division, DRDO.**
-
-*Dissertation Project — M.Sc. Data Science & Analytics, Jain University (2023–2025)*
+**A CNN-based ship classification system
 
 </div>
 
@@ -35,13 +32,13 @@ developed during internship at LRDE Division, DRDO.**
 
 ## 🔭 Overview
 
-This project addresses the challenge of **automating naval vessel identification** using deep learning on ISAR radar imagery. Traditional ship classification relies on human interpretation of radar data — a slow and error-prone process. This system replaces it with a **Convolutional Neural Network (CNN)** pipeline deployed as a Flask web application.
+This project addresses the challenge of **automating naval vessel identification** using deep learning on imagery. Traditional ship classification relies on human interpretation of data — a slow and error-prone process. This system replaces it with a **Convolutional Neural Network (CNN)** pipeline deployed as a Flask web application.
 
 **Key capabilities:**
-- Upload a ZIP dataset of ISAR ship images → auto-train a CNN model
-- Real-time ship-type prediction on new images
+- Upload a ZIP dataset of images → auto-train a CNN model
+- Real-time prediction on new images
 - Visual evaluation: confusion matrix, accuracy/loss curves, classification report
-- Supports 7 ship categories out of the box
+- Supports categories out of the box
 
 **Applications:** Naval surveillance · Maritime traffic management · Piracy prevention · Port monitoring · Environmental compliance tracking
 
@@ -82,7 +79,7 @@ Input Image (200×500, Grayscale)
 └─────────────────────────┘
         │
         ▼
-  Predicted Ship Class
+  Predicted image Class
 ```
 
 **Optimizer:** Adagrad (lr=0.1)  
@@ -91,44 +88,9 @@ Input Image (200×500, Grayscale)
 **Augmentation:** Horizontal flip · Vertical flip · Rescale [0,1]  
 **Train/Val Split:** 80% / 20%
 
----
-
-## 🚢 Ship Classes
-
-| # | Class | Description |
-|---|-------|-------------|
-| 1 | **Cargo** | Commercial freight vessels |
-| 2 | **Aircraft Carrier** | Naval aviation warships |
-| 3 | **Passenger** | Cruise / ferry vessels |
-| 4 | **Oil Tanker** | Petroleum transport ships |
-| 5 | **Frigate** | Naval escort warships |
-| 6 | **Patrol** | Coast guard / patrol boats |
-| 7 | **Other** | Miscellaneous vessel types |
-
----
 
 ## 📁 Dataset Structure
 
-Your ZIP file must follow this directory layout:
-
-```
-dataset.zip
-└── dataset/
-    ├── cargo/
-    │   ├── cargo_001.png
-    │   └── ...
-    ├── aircraft_carrier/
-    │   └── ...
-    ├── passenger/
-    │   └── ...
-    ├── oil_tanker/
-    │   └── ...
-    ├── frigate/
-    │   └── ...
-    ├── patrol/
-    │   └── ...
-    └── other/
-        └── ...
 ```
 
 > **Image requirements:** PNG or JPG, any resolution (will be auto-resized to 200×500).  
@@ -168,7 +130,7 @@ The app will be available at **http://127.0.0.1:5000**
 ## 🚀 Usage
 
 ### Step 1 — Prepare Dataset
-Organise your ISAR images into class-labelled folders and ZIP them as shown in [Dataset Structure](#-dataset-structure).
+Organise images into class-labelled folders and ZIP them as shown in [Dataset Structure](#-dataset-structure).
 
 ### Step 2 — Upload & Train
 1. Open the web app at `http://127.0.0.1:5000`
@@ -184,14 +146,14 @@ The training results page shows:
 
 ### Step 4 — Predict
 1. Navigate to `/predict`
-2. Upload a single ISAR image
-3. View the predicted ship type + per-class confidence scores
+2. Upload a single image
+3. View the predicted type + per-class confidence scores
 
 ---
 
 ## 📊 Results
 
-> Results below are representative of a well-balanced 7-class ISAR dataset.
+> Results below are representative of a well-balanced image dataset.
 
 | Metric | Value |
 |--------|-------|
@@ -203,7 +165,6 @@ The training results page shows:
 **Observations:**
 - CNN significantly outperforms traditional hand-crafted feature methods
 - Augmentation (flip) improves generalisation across viewing angles
-- Noise in ISAR data causes minor misclassification between visually similar classes (e.g., Frigate vs Patrol)
 
 ---
 
@@ -254,31 +215,11 @@ ship-isar-classification/
 
 - [ ] Integrate transfer learning (ResNet-50 / EfficientNet) for higher accuracy
 - [ ] Add real-time video stream classification
-- [ ] Multi-sensor fusion (ISAR + optical imagery)
+- [ ] Multi-sensor fusion (optical imagery)
 - [ ] Deploy on cloud (AWS / GCP) with Docker
 - [ ] Extend to AIS (Automatic Identification System) data fusion
 - [ ] Add Grad-CAM visualisation for model interpretability
 
----
-
-## 👤 Author
-
-**Vijay N** · `23MSRDS078`  
-M.Sc. Data Science & Analytics (2023–2025)  
-Jain (Deemed-to-be University), Bangalore
-
-**Internship Guide:** Dr. Dyana A, Scientist — LRDE Division, DRDO  
-**Academic Mentor:** Dr. Ghouse Basha, Jain University
-
----
-
-## 🙏 Acknowledgements
-
-- **LRDE Division, DRDO** — for providing the internship opportunity and domain expertise
-- **Dr. Dyana A** — for guidance on ISAR imaging and radar signal processing
-- **Dr. Ghouse Basha** — for academic mentorship and project support
-- **Dr. Asha Rajiv** — Director, School of Sciences, Jain University
-- **Dr. Arathi Sudarshan** — Head of Department, Data Analytics & Mathematical Sciences
 
 ---
 
@@ -288,6 +229,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-<div align="center">
-<sub>Built with ☕ during DRDO LRDE Internship, Bangalore · 2025</sub>
-</div>
