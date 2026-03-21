@@ -1,8 +1,7 @@
-# 🛳 Ship Classification from ISAR Images
+# 🛳 Image Classification using CNN model
 
 <div align="center">
 
-![DRDO](https://img.shields.io/badge/DRDO-LRDE%20Division-blue?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.12%2B-orange?style=for-the-badge&logo=tensorflow)
 ![Flask](https://img.shields.io/badge/Flask-2.3%2B-green?style=for-the-badge&logo=flask)
